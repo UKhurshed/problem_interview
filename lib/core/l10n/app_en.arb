@@ -1,0 +1,21 @@
+{
+  "projectName": "Search Github Repos",
+  "serverFailure": "Server-side operation failed",
+  "cacheFailure": "An error occurred with the operation of the database",
+  "cancelFailure": "The request to the API server was canceled",
+  "connectTimeOutFailure": "Connection timeout with the API server",
+  "dioOtherFailure": "There was a failure when connecting to the Internet",
+  "receiveTimeOutFailure": "Receiving timeout in connection with the API server",
+  "sendTimeOutFailure": "Sending timeout in connection with the API server",
+  "badRequestFailure": "The URL request was incorrectly assembled",
+  "notFoundFailure": "Resource not found",
+  "somethingWentWrongFailure": "An error has occurred, try again!",
+  "internalServerError": "Internal server error",
+  "textFieldHint": "Search repository",
+  "oupsError": "Oups, error!",
+  "close": "Close",
+  "search": "Search",
+  "requiredThreeCharacters": "Enter at least three characters",
+  "noDescription": "No description",
+  "sortBy": "SortBy"
+}

@@ -1,0 +1,21 @@
+{
+  "projectName": "Problem Interview",
+  "serverFailure": "Произошел сбой работы на стороне сервера",
+  "cacheFailure": "Произошла ошибка с работы базой данных",
+  "cancelFailure": "Запрос к серверу API был отменен",
+  "connectTimeOutFailure": "Тайм-аут соединения с сервером API",
+  "dioOtherFailure": "При подключения к интернету произошел сбой",
+  "receiveTimeOutFailure": "Тайм-аут получения в связи с сервером API",
+  "sendTimeOutFailure": "Тайм-аут отправки в связи с сервером API",
+  "badRequestFailure": "URL-запрос неправильно собран",
+  "notFoundFailure": "Ресурс не найден",
+  "somethingWentWrongFailure": "Произошла ошибка, попробуйте снова!",
+  "internalServerError": "Внутренняя ошибка сервера",
+  "textFieldHint": "Поиск репозиторий",
+  "oupsError": "Упс, ошибка!",
+  "close": "Закрыть",
+  "search": "Поиск",
+  "requiredThreeCharacters": "Введите не менее трех символов",
+  "noDescription": "Нет описания",
+  "sortBy": "Сортировать по"
+}
