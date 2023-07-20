@@ -17,5 +17,6 @@
   "search": "Поиск",
   "requiredThreeCharacters": "Введите не менее трех символов",
   "noDescription": "Нет описания",
-  "sortBy": "Сортировать по"
+  "sortBy": "Сортировать по",
+  "profile": "Профиль"
 }

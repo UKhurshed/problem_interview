@@ -38,7 +38,7 @@ class FailureDialog extends StatelessWidget {
               ElevatedButton(
                   style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
                   onPressed: () {
-                    BlocProvider.of<SearchRepositoriesBloc>(context).add(ClearState());
+                    BlocProvider.of<SearchRepositoriesBloc>(context).add(const ClearState());
                     Navigator.of(context).pop();
 
                   },
