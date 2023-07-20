@@ -18,5 +18,8 @@
   "requiredThreeCharacters": "Enter at least three characters",
   "noDescription": "No description",
   "sortBy": "SortBy",
-  "profile": "Profile"
+  "profile": "Profile",
+  "myProfile": "My profile",
+  "enterName": "Enter your name",
+  "saveButton": "Save"
 }

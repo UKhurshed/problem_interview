@@ -18,5 +18,8 @@
   "requiredThreeCharacters": "Введите не менее трех символов",
   "noDescription": "Нет описания",
   "sortBy": "Сортировать по",
-  "profile": "Профиль"
+  "profile": "Профиль",
+  "myProfile": "Мой профиль",
+  "enterName": "Введите имя",
+  "saveButton": "Сохранить"
 }

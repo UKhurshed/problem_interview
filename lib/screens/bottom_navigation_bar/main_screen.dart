@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -13,9 +14,15 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: child,
-      bottomNavigationBar: const CustomBottomNavigationBar(),
+    return AnnotatedRegion(
+      value: const SystemUiOverlayStyle(
+          statusBarColor: Colors.green,
+          statusBarBrightness: Brightness.light,
+          statusBarIconBrightness: Brightness.light),
+      child: Scaffold(
+        body: child,
+        bottomNavigationBar: const CustomBottomNavigationBar(),
+      ),
     );
   }
 }
@@ -28,6 +35,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
     return BlocBuilder<NavigationBarIndexCubit, int>(
       builder: (context, state) {
         return BottomNavigationBar(
+            unselectedItemColor: Colors.grey,
             currentIndex: state,
             onTap: (index) {
               BlocProvider.of<NavigationBarIndexCubit>(context)
@@ -37,10 +45,12 @@ class CustomBottomNavigationBar extends StatelessWidget {
             },
             items: [
               BottomNavigationBarItem(
-                  icon: const Icon(Icons.search, color: Colors.green),
+                  icon: Icon(Icons.search,
+                      color: state == 0 ? Colors.green : Colors.grey),
                   label: GetIt.I.get<AppLocalizations>().search),
               BottomNavigationBarItem(
-                  icon: const Icon(Icons.person, color: Colors.green),
+                  icon: Icon(Icons.person,
+                      color: state == 1 ? Colors.green : Colors.grey),
                   label: GetIt.I.get<AppLocalizations>().profile)
             ]);
       },

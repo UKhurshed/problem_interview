@@ -389,14 +389,230 @@ class SearchReposCompanion extends UpdateCompanion<SearchRepo> {
   }
 }
 
+class $ProfileReposTable extends ProfileRepos
+    with TableInfo<$ProfileReposTable, ProfileRepo> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $ProfileReposTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+      'id', aliasedName, false,
+      hasAutoIncrement: true,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
+  static const VerificationMeta _avatarMeta = const VerificationMeta('avatar');
+  @override
+  late final GeneratedColumn<Uint8List> avatar = GeneratedColumn<Uint8List>(
+      'avatar', aliasedName, true,
+      type: DriftSqlType.blob, requiredDuringInsert: false);
+  static const VerificationMeta _fullNameMeta =
+      const VerificationMeta('fullName');
+  @override
+  late final GeneratedColumn<String> fullName = GeneratedColumn<String>(
+      'full_name', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  @override
+  List<GeneratedColumn> get $columns => [id, avatar, fullName];
+  @override
+  String get aliasedName => _alias ?? 'profile_repos';
+  @override
+  String get actualTableName => 'profile_repos';
+  @override
+  VerificationContext validateIntegrity(Insertable<ProfileRepo> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('avatar')) {
+      context.handle(_avatarMeta,
+          avatar.isAcceptableOrUnknown(data['avatar']!, _avatarMeta));
+    }
+    if (data.containsKey('full_name')) {
+      context.handle(_fullNameMeta,
+          fullName.isAcceptableOrUnknown(data['full_name']!, _fullNameMeta));
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  ProfileRepo map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return ProfileRepo(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      avatar: attachedDatabase.typeMapping
+          .read(DriftSqlType.blob, data['${effectivePrefix}avatar']),
+      fullName: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}full_name']),
+    );
+  }
+
+  @override
+  $ProfileReposTable createAlias(String alias) {
+    return $ProfileReposTable(attachedDatabase, alias);
+  }
+}
+
+class ProfileRepo extends DataClass implements Insertable<ProfileRepo> {
+  final int id;
+  final Uint8List? avatar;
+  final String? fullName;
+  const ProfileRepo({required this.id, this.avatar, this.fullName});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    if (!nullToAbsent || avatar != null) {
+      map['avatar'] = Variable<Uint8List>(avatar);
+    }
+    if (!nullToAbsent || fullName != null) {
+      map['full_name'] = Variable<String>(fullName);
+    }
+    return map;
+  }
+
+  ProfileReposCompanion toCompanion(bool nullToAbsent) {
+    return ProfileReposCompanion(
+      id: Value(id),
+      avatar:
+          avatar == null && nullToAbsent ? const Value.absent() : Value(avatar),
+      fullName: fullName == null && nullToAbsent
+          ? const Value.absent()
+          : Value(fullName),
+    );
+  }
+
+  factory ProfileRepo.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return ProfileRepo(
+      id: serializer.fromJson<int>(json['id']),
+      avatar: serializer.fromJson<Uint8List?>(json['avatar']),
+      fullName: serializer.fromJson<String?>(json['fullName']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'avatar': serializer.toJson<Uint8List?>(avatar),
+      'fullName': serializer.toJson<String?>(fullName),
+    };
+  }
+
+  ProfileRepo copyWith(
+          {int? id,
+          Value<Uint8List?> avatar = const Value.absent(),
+          Value<String?> fullName = const Value.absent()}) =>
+      ProfileRepo(
+        id: id ?? this.id,
+        avatar: avatar.present ? avatar.value : this.avatar,
+        fullName: fullName.present ? fullName.value : this.fullName,
+      );
+  @override
+  String toString() {
+    return (StringBuffer('ProfileRepo(')
+          ..write('id: $id, ')
+          ..write('avatar: $avatar, ')
+          ..write('fullName: $fullName')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(id, $driftBlobEquality.hash(avatar), fullName);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is ProfileRepo &&
+          other.id == this.id &&
+          $driftBlobEquality.equals(other.avatar, this.avatar) &&
+          other.fullName == this.fullName);
+}
+
+class ProfileReposCompanion extends UpdateCompanion<ProfileRepo> {
+  final Value<int> id;
+  final Value<Uint8List?> avatar;
+  final Value<String?> fullName;
+  const ProfileReposCompanion({
+    this.id = const Value.absent(),
+    this.avatar = const Value.absent(),
+    this.fullName = const Value.absent(),
+  });
+  ProfileReposCompanion.insert({
+    this.id = const Value.absent(),
+    this.avatar = const Value.absent(),
+    this.fullName = const Value.absent(),
+  });
+  static Insertable<ProfileRepo> custom({
+    Expression<int>? id,
+    Expression<Uint8List>? avatar,
+    Expression<String>? fullName,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (avatar != null) 'avatar': avatar,
+      if (fullName != null) 'full_name': fullName,
+    });
+  }
+
+  ProfileReposCompanion copyWith(
+      {Value<int>? id, Value<Uint8List?>? avatar, Value<String?>? fullName}) {
+    return ProfileReposCompanion(
+      id: id ?? this.id,
+      avatar: avatar ?? this.avatar,
+      fullName: fullName ?? this.fullName,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (avatar.present) {
+      map['avatar'] = Variable<Uint8List>(avatar.value);
+    }
+    if (fullName.present) {
+      map['full_name'] = Variable<String>(fullName.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('ProfileReposCompanion(')
+          ..write('id: $id, ')
+          ..write('avatar: $avatar, ')
+          ..write('fullName: $fullName')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$SearchReposDatabase extends GeneratedDatabase {
   _$SearchReposDatabase(QueryExecutor e) : super(e);
   late final $SearchReposTable searchRepos = $SearchReposTable(this);
+  late final $ProfileReposTable profileRepos = $ProfileReposTable(this);
   late final SearchReposDao searchReposDao =
       SearchReposDao(this as SearchReposDatabase);
+  late final ProfileReposDao profileReposDao =
+      ProfileReposDao(this as SearchReposDatabase);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [searchRepos];
+  List<DatabaseSchemaEntity> get allSchemaEntities =>
+      [searchRepos, profileRepos];
 }
